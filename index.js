@@ -6,12 +6,14 @@ const morgan = require('morgan');
 const app = express();
 const mongoose = require('mongoose');
 const router = require('./router');
+const cors = require('cors');
 
 // DB Setup
 mongoose.connect('mongodb://localhost:auth/auth');
 
 // App Setup
 app.use(morgan('combined')); // morgan logging framework
+app.use(cors()); // Allow request from any domain or port
 app.use(bodyParser.json({ type: '*/*' }));
 router(app);
 
